@@ -1,12 +1,14 @@
 import React from 'react';
 import Button from '../components/common/Button';
 import Card, { CardBody } from '../components/common/Card';
+import privateSector from '../assets/images/tvet-conference.jpg'
+
 const PrivateSectorPage: React.FC = () => {
   return <div className="pt-16 bg-white">
       {/* Hero section */}
       <div className="relative bg-blue-700">
         <div className="absolute inset-0">
-          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt="People in a business meeting" />
+          <img className="w-full h-full object-cover" src={privateSector} alt="People in a business meeting" />
           <div className="absolute inset-0 bg-blue-700 mix-blend-multiply" aria-hidden="true"></div>
         </div>
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">

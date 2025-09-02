@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Button from '../components/common/Button';
 import Card, { CardBody } from '../components/common/Card';
+import donation from '../assets/images/donation.jpg'
+
 const DonationPage: React.FC = () => {
   const [donationAmount, setDonationAmount] = useState<string>('');
   const [customAmount, setCustomAmount] = useState<string>('');
@@ -26,7 +28,7 @@ const DonationPage: React.FC = () => {
       {/* Hero section */}
       <div className="relative bg-blue-700">
         <div className="absolute inset-0">
-          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Students learning together" />
+          <img className="w-full h-full object-cover" src={donation} alt="Students learning together" />
           <div className="absolute inset-0 bg-blue-700 mix-blend-multiply" aria-hidden="true"></div>
         </div>
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">

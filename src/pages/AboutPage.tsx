@@ -1,5 +1,10 @@
 import React from 'react';
 import Button from '../components/common/Button';
+import tvetBoard from "../assets/images/tvet-graduation.jpg";
+import team1 from "../assets/images/DG.png";
+import team2 from "../assets/images/deputy.png";
+import team3 from "../assets/images/training.png";
+import team4 from "../assets/images/development.png";
 const AboutPage: React.FC = () => {
   return <div className="pt-16 bg-white">
       {/* Hero section */}
@@ -8,7 +13,7 @@ const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
             <div className="absolute inset-0">
-              <img className="h-full w-full object-cover" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt="People working on laptops" />
+              <img className="h-full w-full object-cover" src={tvetBoard} alt="People working on laptops" />
               <div className="absolute inset-0 bg-blue-700 mix-blend-multiply"></div>
             </div>
             <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
@@ -114,35 +119,95 @@ const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">
-              Our Team
+              
             </h2>
             <p className="mt-1 text-3xl font-extrabold text-gray-900 sm:text-4xl sm:tracking-tight">
-              Meet the People Behind TVETLink
+              MANAGEMENT TEAM
             </p>
             <p className="max-w-2xl mt-5 mx-auto text-xl text-gray-500">
-              Our diverse team brings together expertise in education, industry,
-              and technology.
+              Rwanda TVET Board (RTB) is headed by a Director General (DG), under whom there are two (2) heads of departments (HoDs), one (1) division manager (DM), and one (1) director (DAF).
             </p>
           </div>
           <div className="mt-12 grid gap-16 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
-            {[1, 2, 3].map(member => <div key={member}>
+            {/* Director General */}
+            <div >
                 <div className="mb-4">
-                  <img className="h-40 w-40 rounded-full mx-auto object-cover" src={`https://randomuser.me/api/portraits/${member % 2 === 0 ? 'women' : 'men'}/${member + 30}.jpg`} alt="" />
+                  <img className="h-40 w-40 rounded-full mx-auto object-cover" src={team1} alt="" />
                 </div>
                 <div className="text-center">
                   <h3 className="text-lg font-medium text-gray-900">
-                    Team Member {member}
+                    Dipl.-Ing. Paul UMUKUNZI
+                    <span style={{ color: "blue" }}> <br /> The Director General </span>
                   </h3>
                   <p className="text-sm font-medium text-blue-600">
-                    Co-Founder /{' '}
-                    {member === 1 ? 'CEO' : member === 2 ? 'CTO' : 'COO'}
+                    
                   </p>
                   <p className="mt-2 text-base text-gray-500">
-                    Passionate about connecting education with real-world
-                    opportunities and creating pathways to successful careers.
+                    Dipl.-Ing. Paul Umukunzi is the Director General of Rwanda TVET Board since November 2020. He brings with him a huge experience in TVET management. Prior to his appointment as Director General, Eng. Paul Umukunzi served as Deputy Principal in charge of Academics and Trainings in both IPRC Huye and IPRC Karongi. He is a graduate of Technical University of Kaiserslautern, Germany, where he obtained a Masters of Science in Civil Engineering.
                   </p>
                 </div>
-              </div>)}
+              </div>
+           
+             {/* Deputy Director General */}
+            <div >
+                <div className="mb-4">
+                  <img className="h-40 w-40 rounded-full mx-auto object-cover" src={team2} alt="" />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Ms. Agaba Nassi Bisengo
+                    <span style={{ color: "blue" }}> <br /> Deputy Director General </span>
+                  </h3>
+                  <p className="text-sm font-medium text-blue-600">
+                    
+                  </p>
+                  <p className="mt-2 text-base text-gray-500">
+                    Ms. Agaba Nassi Bisengo serves as the Deputy Director General of the Rwanda Technical and Vocational Education and Training Board (RTB), having been appointed on March 26, 2025. With a solid background in leadership and management, she has successfully led diverse, cross-cultural teams across various sectors.
+                    Prior to her current role, Agaba served as a Senior Project Specialist at HOPE International, where she played a pivotal role in overseeing operational projects related to banking and fintechsystems. She was instrumental in the development and implementation of technical systems and applications for banks within the HOPE International Global Network, driving efficiency and innovation in financial operations.
+                  </p>
+                </div>
+              </div>
+           
+           {/* Head of Department Training Management */}
+            <div >
+                <div className="mb-4">
+                  <img className="h-40 w-40 rounded-full mx-auto object-cover" src={team3} alt="" />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-lg font-medium text-gray-900">
+                   Solange UWAMAHORO
+                    <span style={{ color: "blue" }}> <br /> Head of Department Training Management </span>
+                  </h3>
+                  <p className="text-sm font-medium text-blue-600">
+                    
+                  </p>
+                  <p className="mt-2 text-base text-gray-500">
+                    Ms. Solange UWAMAHORO is the head of Training Management Department in RTB. She holds a Master of Technology in Education (M-Tech in Education) from Tshwane University of Technology/ South Africa. Solange is in TVET sub-sector for the last 9 years, where she worked in the former “Workforce Development Authority” (WDA) as the Director of Qualification, Licensing and Accreditation Unit, and in IPRC Kigali as the Director of Quality Assurance and Training of Trainers Unit.
+                  </p>
+                </div>
+              </div>
+           
+           {/* Head of Department Curriculum and Instructional Material Development */}
+            <div >
+                <div className="mb-4">
+                  <img className="h-40 w-40 rounded-full mx-auto object-cover" src={team4} alt="" />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Aimable RWAMASIRABO
+                    <span style={{ color: "blue" }}> <br /> Head of Department Curriculum and Instructional Material Development </span>
+                  </h3>
+                  <p className="text-sm font-medium text-blue-600">
+                    
+                  </p>
+                  <p className="mt-2 text-base text-gray-500">
+                    Aimable RWAMASIRABO is the Head of curriculum and instructional Materials development Department at Rwanda TVET Board (RTB) since February 2021.
+                    He brings with Him a huge experience of over 13 years in curriculum and qualification framework development within the TVET sub-sector. Prior to his current position, He served as the coordinator for curriculum development at Rwanda Polytechnic (RP) between 2018-2021, curriculum developer at the Workforce Development Authority (WDA) between 2011-2018. He acquired his master’s in Education (curriculum and Instruction) from University of Rwanda in 2019, and a Bachelor of Science in Electrical Engineering from Kigali Institute of Science and Technology in 2007.
+                  </p>
+                </div>
+              </div>
+
+
           </div>
         </div>
       </div>
