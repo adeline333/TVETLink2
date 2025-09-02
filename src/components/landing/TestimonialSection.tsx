@@ -1,39 +1,42 @@
 import React from 'react';
 import Card, { CardBody } from '../common/Card';
+import dariusImg from '../../assets/images/Darius.jpg';
+import emmanuelImg from '../../assets/images/emmanuel.jpg';
+import irankundaImg from '../../assets/images/Irankunda.jpeg';
 
 interface TestimonialProps {
   quote: string;
   name: string;
   role: string;
+  image: string;
 }
 
 const testimonials: TestimonialProps[] = [
   {
-    quote: "I expanded my small shop into a second location after participating in training programs like Competency-Based Economies through Formation of Enterprises (CEFE) and Business Counselling and Exchange (BCE). With support from these programs, my husband and I secured a bank loan to grow our business.",
-    name: 'Mukapasika Herondine',
-    role: 'Retail Business Owner'
+    quote: "From welder to educator and entrepreneur! After training at Center for Champions in Kayonza District, I became an instructor and opened my own welding workshops. TVET transformed my life completely - better salary, marriage, and investments that secure my future.",
+    name: 'Darius Uwizeye',
+    role: 'Welder Turned Educator & Entrepreneur',
+    image: dariusImg
   },
   {
-    quote: "I pursued a seven-month hairdressing program through the Dukorane Umurava project. Upon completion, I secured employment at a salon in Kabeza, Kigali, enabling me to support my family.",
-    name: 'Muhoza Joyeuse',
-    role: 'Hairdressing Entrepreneur'
+    quote: "Graduated in motor vehicle mechanics from IPRC Karongi and developed the 'green vehicle system' - an electronic device to control vehicle air pollution. Now I'm CEO of GREENALYTIC LTD, employing multiple staff and making a real environmental impact.",
+    name: 'Emmanuel Tuyizere',
+    role: 'Environmental Innovator & CEO',
+    image: emmanuelImg
   },
   {
-    quote: "I utilized the skills acquired from TVET to open my own hair salon, demonstrating the potential of TVET education in fostering entrepreneurship and self-reliance.",
-    name: 'Ngarukiye Dieu Merci',
-    role: 'Salon Owner'
-  },
-  {
-    quote: "As a mother from Kageyo Sector, I benefited from entrepreneurship training provided by the Dukorane Umurava project. With guidance from Business Development Advisors, I secured a loan to revive my chicken-rearing business, which had been impacted by the COVID-19 pandemic.",
-    name: 'Mukayisinga Sezibera Dionyse',
-    role: 'Poultry Farmer'
+    quote: "As a 2022 Rwanda Polytechnic graduate, I founded INNOVAHYPER Technologies, producing construction machinery from recycled electronic waste. We're creating affordable, eco-friendly equipment while employing 6 permanent staff and up to 60 individuals through projects.",
+    name: 'Claude Irankunda',
+    role: 'Founder & CEO of Innovahyper Technologies',
+    image: irankundaImg
   }
 ];
 
 const TestimonialCard: React.FC<TestimonialProps> = ({
   quote,
   name,
-  role
+  role,
+  image
 }) => {
   return (
     <Card className="h-full flex flex-col">
@@ -44,9 +47,14 @@ const TestimonialCard: React.FC<TestimonialProps> = ({
           </svg>
           <p className="text-gray-600 mb-4">{quote}</p>
         </div>
-        <div className="mt-4">
-          <p className="text-sm font-medium text-gray-900">{name}</p>
-          <p className="text-sm text-gray-500">{role}</p>
+        <div className="mt-4 flex items-center gap-3">
+          <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full overflow-hidden flex-shrink-0">
+            <img src={image} alt={name} className="h-full w-full object-cover object-center" />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-gray-900">{name}</p>
+            <p className="text-sm text-gray-500">{role}</p>
+          </div>
         </div>
       </CardBody>
     </Card>
