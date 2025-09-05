@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
+import { useAuth } from '../contexts/AuthContext';
 const SignUpPage: React.FC = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -8,22 +9,38 @@ const SignUpPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [role, setRole] = useState('student');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder for registration logic
-    console.log('Registration attempt:', {
-      firstName,
-      lastName,
-      email,
-      password,
-      role
-    });
-    // Redirect based on role
-    if (role === 'student') {
-      navigate('/student-dashboard');
-    } else if (role === 'private-sector') {
-      navigate('/private-sector-dashboard');
+    setError('');
+
+    // Simple validation
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return;
+    }
+
+    // For MVP, we'll just auto-login with the provided credentials
+    // In a real app, you'd create the account first
+    const success = login(email, password, role);
+    
+    if (success) {
+      // Redirect based on role
+      if (role === 'student') {
+        navigate('/student-dashboard');
+      } else if (role === 'private-sector') {
+        navigate('/private-sector-dashboard');
+      }
+    } else {
+      setError('Registration failed. Please try again.');
     }
   };
   return <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -40,6 +57,11 @@ const SignUpPage: React.FC = () => {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+              {error}
+            </div>
+          )}
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
               <div>

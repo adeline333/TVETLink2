@@ -1,10 +1,26 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { MenuIcon, XIcon } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { MenuIcon, XIcon, LogOutIcon, UserIcon } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout, isAuthenticated } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+    setIsOpen(false);
+  };
+
+  const getDashboardPath = () => {
+    if (user?.role === 'student') return '/student-dashboard';
+    if (user?.role === 'private-sector') return '/private-sector-dashboard';
+    if (user?.role === 'admin') return '/admin-dashboard';
+    return '/';
+  };
 
   const isActive = (path: string) => {
     if (path === '/' && location.pathname === '/') {
@@ -61,12 +77,27 @@ const Navbar: React.FC = () => {
             </div>
           </div>
           <div className="hidden md:flex items-center">
-            <Link to="/login" className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md">
-              Login
-            </Link>
-            <Link to="/signup" className="ml-3 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md">
-              Sign Up
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <Link to={getDashboardPath()} className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md flex items-center">
+                  <UserIcon className="w-4 h-4 mr-2" />
+                  {user?.name}
+                </Link>
+                <button onClick={handleLogout} className="ml-3 px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md flex items-center">
+                  <LogOutIcon className="w-4 h-4 mr-2" />
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md">
+                  Login
+                </Link>
+                <Link to="/signup" className="ml-3 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md">
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
           <div className="-mr-2 flex items-center md:hidden">
             <button onClick={() => setIsOpen(!isOpen)} className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100" aria-expanded="false">
@@ -98,12 +129,27 @@ const Navbar: React.FC = () => {
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-4">
-              <Link to="/login" className="block text-base font-medium text-gray-500 hover:text-gray-800">
-                Login
-              </Link>
-              <Link to="/signup" className="ml-auto block px-4 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md">
-                Sign Up
-              </Link>
+              {isAuthenticated ? (
+                <>
+                  <Link to={getDashboardPath()} className="block text-base font-medium text-gray-500 hover:text-gray-800 flex items-center">
+                    <UserIcon className="w-4 h-4 mr-2" />
+                    {user?.name}
+                  </Link>
+                  <button onClick={handleLogout} className="ml-auto block px-4 py-2 text-base font-medium text-white bg-red-600 hover:bg-red-700 rounded-md flex items-center">
+                    <LogOutIcon className="w-4 h-4 mr-2" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="block text-base font-medium text-gray-500 hover:text-gray-800">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="ml-auto block px-4 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md">
+                    Sign Up
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
