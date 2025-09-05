@@ -1,26 +1,32 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
+import { useAuth } from '../contexts/AuthContext';
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('student');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder for authentication logic
-    console.log('Login attempt:', {
-      email,
-      password,
-      role
-    });
-    // Redirect based on role
-    if (role === 'student') {
-      navigate('/student-dashboard');
-    } else if (role === 'private-sector') {
-      navigate('/private-sector-dashboard');
-    } else if (role === 'admin') {
-      navigate('/admin-dashboard');
+    setError('');
+    
+    const success = login(email, password, role);
+    
+    if (success) {
+      // Redirect based on role
+      if (role === 'student') {
+        navigate('/student-dashboard');
+      } else if (role === 'private-sector') {
+        navigate('/private-sector-dashboard');
+      } else if (role === 'admin') {
+        navigate('/admin-dashboard');
+      }
+    } else {
+      setError('Invalid credentials. Please check your email, password, and role.');
     }
   };
   return <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -37,6 +43,11 @@ const LoginPage: React.FC = () => {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+              {error}
+            </div>
+          )}
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
