@@ -1,6 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
+import tvetGraduation from "../assets/images/tvet-graduation.jpg";
 const AboutPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate('/signup');
+  };
+
+  const handleLearnMore = () => {
+    navigate('/private-sector');
+  };
+
   return <div className="pt-16 bg-white">
       {/* Hero section */}
       <div className="relative bg-gray-50">
@@ -8,36 +20,123 @@ const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
             <div className="absolute inset-0">
-              <img className="h-full w-full object-cover" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt="People working on laptops" />
-              <div className="absolute inset-0 bg-blue-700 mix-blend-multiply"></div>
+              <img className="h-full w-full object-cover" src={tvetGraduation} alt="TVET graduates working in industry" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 opacity-80"></div>
             </div>
             <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
               <h1 className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                <span className="block text-white">About TVETLink</span>
+                <span className="block text-white drop-shadow-lg">About TVETLink</span>
               </h1>
-              <p className="mt-6 max-w-lg mx-auto text-center text-xl text-blue-100 sm:max-w-3xl">
-                Bridging the gap between technical education and industry needs
-                to create meaningful career opportunities.
+              <p className="mt-6 max-w-lg mx-auto text-center text-xl text-blue-100 sm:max-w-3xl drop-shadow-md">
+                Connecting private sector employers with skilled TVET graduates
+                to solve Rwanda's skills gap and boost youth employment.
               </p>
+              <div className="mt-8 flex justify-center">
+                <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-6 py-3">
+                  <p className="text-white text-sm font-medium">
+                    Bridging the gap between education and industry
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      {/* Problem section */}
+      <div className="py-16 bg-red-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base font-semibold text-red-600 tracking-wide uppercase">
+              The Challenge
+            </h2>
+            <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
+              Rwanda's Skills Gap Crisis
+            </p>
+            <p className="mt-5 max-w-prose mx-auto text-xl text-gray-600">
+              Despite high youth unemployment, private sector employers struggle to find skilled workers, 
+              while young people remain unaware of the career opportunities TVET offers.
+            </p>
+          </div>
+          <div className="mt-12">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="pt-6">
+                <div className="flow-root bg-white rounded-lg px-6 pb-8 shadow-sm">
+                  <div className="-mt-6">
+                    <div>
+                      <span className="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg">
+                        <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
+                      Low Private Sector Engagement
+                    </h3>
+                    <p className="mt-5 text-base text-gray-500">
+                      Only 15% of private companies actively participate in skills development programs, 
+                      creating a disconnect between industry needs and training.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-6">
+                <div className="flow-root bg-white rounded-lg px-6 pb-8 shadow-sm">
+                  <div className="-mt-6">
+                    <div>
+                      <span className="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg">
+                        <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
+                      Low TVET Enrollment
+                    </h3>
+                    <p className="mt-5 text-base text-gray-500">
+                      Many young people are unaware of TVET benefits, leading to low enrollment rates 
+                      and missed career opportunities in high-demand sectors.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-6">
+                <div className="flow-root bg-white rounded-lg px-6 pb-8 shadow-sm">
+                  <div className="-mt-6">
+                    <div>
+                      <span className="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg">
+                        <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
+                      Skills Mismatch
+                    </h3>
+                    <p className="mt-5 text-base text-gray-500">
+                      Graduates lack industry-relevant skills while employers can't find qualified workers, 
+                      creating a cycle that hinders economic growth.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Mission section */}
       <div className="py-16 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">
-              Our Mission
+              Our Solution
             </h2>
             <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-              Empowering the Next Generation of Skilled Professionals
+              Connecting Private Sector with Skilled TVET Graduates
             </p>
             <p className="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-              TVETLink is dedicated to creating a seamless connection between
-              technical education, vocational training, and industry needs. We
-              believe in the power of skills-based education to transform lives
-              and build stronger economies.
+              TVETLink creates a direct bridge between private sector employers and TVET graduates, 
+              increasing both industry engagement and student awareness of career opportunities.
             </p>
           </div>
           <div className="mt-12">
@@ -109,43 +208,6 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* Team section */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">
-              Our Team
-            </h2>
-            <p className="mt-1 text-3xl font-extrabold text-gray-900 sm:text-4xl sm:tracking-tight">
-              Meet the People Behind TVETLink
-            </p>
-            <p className="max-w-2xl mt-5 mx-auto text-xl text-gray-500">
-              Our diverse team brings together expertise in education, industry,
-              and technology.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-16 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
-            {[1, 2, 3].map(member => <div key={member}>
-                <div className="mb-4">
-                  <img className="h-40 w-40 rounded-full mx-auto object-cover" src={`https://randomuser.me/api/portraits/${member % 2 === 0 ? 'women' : 'men'}/${member + 30}.jpg`} alt="" />
-                </div>
-                <div className="text-center">
-                  <h3 className="text-lg font-medium text-gray-900">
-                    Team Member {member}
-                  </h3>
-                  <p className="text-sm font-medium text-blue-600">
-                    Co-Founder /{' '}
-                    {member === 1 ? 'CEO' : member === 2 ? 'CTO' : 'COO'}
-                  </p>
-                  <p className="mt-2 text-base text-gray-500">
-                    Passionate about connecting education with real-world
-                    opportunities and creating pathways to successful careers.
-                  </p>
-                </div>
-              </div>)}
-          </div>
-        </div>
-      </div>
       {/* Partners section */}
       <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -154,21 +216,119 @@ const AboutPage: React.FC = () => {
               Our Partners
             </h2>
             <p className="mt-1 text-3xl font-extrabold text-gray-900 sm:text-4xl sm:tracking-tight">
-              Working Together for Skills Development
+              Private Sector Employers Hiring TVET Graduates
             </p>
             <p className="max-w-2xl mt-5 mx-auto text-xl text-gray-500">
-              We collaborate with leading organizations across education,
-              industry, and government.
+              Leading companies across Rwanda that recognize the value of TVET graduates and actively hire skilled workers.
             </p>
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-8 md:grid-cols-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map(partner => <div key={partner} className="flex justify-center">
-                <div className="h-16 w-full bg-gray-100 flex items-center justify-center rounded-md">
-                  <span className="text-gray-400 text-lg font-medium">
-                    Partner {partner}
-                  </span>
+          
+          {/* Construction & Infrastructure */}
+          <div className="mt-16">
+            <h3 className="text-lg font-semibold text-gray-900 text-center mb-8">Construction & Infrastructure</h3>
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+              <div className="bg-orange-50 p-6 rounded-lg text-center border border-orange-200">
+                <div className="text-lg font-bold text-orange-600 mb-2">Rwanda Housing Authority</div>
+                <p className="text-sm text-gray-600">Government Housing Projects</p>
+                <p className="text-xs text-orange-500 mt-2">Hiring: 50+ TVET graduates</p>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg text-center border border-orange-200">
+                <div className="text-lg font-bold text-orange-600 mb-2">Rwanda Construction</div>
+                <p className="text-sm text-gray-600">Private Construction Firm</p>
+                <p className="text-xs text-orange-500 mt-2">Hiring: 30+ TVET graduates</p>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg text-center border border-orange-200">
+                <div className="text-lg font-bold text-orange-600 mb-2">Kigali Construction</div>
+                <p className="text-sm text-gray-600">Commercial Building</p>
+                <p className="text-xs text-orange-500 mt-2">Hiring: 25+ TVET graduates</p>
+              </div>
+              <div className="bg-orange-50 p-6 rounded-lg text-center border border-orange-200">
+                <div className="text-lg font-bold text-orange-600 mb-2">Infrastructure Co.</div>
+                <p className="text-sm text-gray-600">Road & Bridge Construction</p>
+                <p className="text-xs text-orange-500 mt-2">Hiring: 40+ TVET graduates</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Technology & ICT */}
+          <div className="mt-12">
+            <h3 className="text-lg font-semibold text-gray-900 text-center mb-8">Technology & ICT</h3>
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+              <div className="bg-blue-50 p-6 rounded-lg text-center border border-blue-200">
+                <div className="text-lg font-bold text-blue-600 mb-2">KLab</div>
+                <p className="text-sm text-gray-600">Tech Innovation Hub</p>
+                <p className="text-xs text-blue-500 mt-2">Hiring: 20+ TVET graduates</p>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg text-center border border-blue-200">
+                <div className="text-lg font-bold text-blue-600 mb-2">Andela Rwanda</div>
+                <p className="text-sm text-gray-600">Software Development</p>
+                <p className="text-xs text-blue-500 mt-2">Hiring: 15+ TVET graduates</p>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg text-center border border-blue-200">
+                <div className="text-lg font-bold text-blue-600 mb-2">SafeMotos</div>
+                <p className="text-sm text-gray-600">Transportation Tech</p>
+                <p className="text-xs text-blue-500 mt-2">Hiring: 10+ TVET graduates</p>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg text-center border border-blue-200">
+                <div className="text-lg font-bold text-blue-600 mb-2">Zipline Rwanda</div>
+                <p className="text-sm text-gray-600">Drone Technology</p>
+                <p className="text-xs text-blue-500 mt-2">Hiring: 12+ TVET graduates</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Manufacturing & Industry */}
+          <div className="mt-12">
+            <h3 className="text-lg font-semibold text-gray-900 text-center mb-8">Manufacturing & Industry</h3>
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+              <div className="bg-green-50 p-6 rounded-lg text-center border border-green-200">
+                <div className="text-lg font-bold text-green-600 mb-2">CIMERWA</div>
+                <p className="text-sm text-gray-600">Cement Manufacturing</p>
+                <p className="text-xs text-green-500 mt-2">Hiring: 35+ TVET graduates</p>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg text-center border border-green-200">
+                <div className="text-lg font-bold text-green-600 mb-2">Bralirwa</div>
+                <p className="text-sm text-gray-600">Beverage Manufacturing</p>
+                <p className="text-xs text-green-500 mt-2">Hiring: 28+ TVET graduates</p>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg text-center border border-green-200">
+                <div className="text-lg font-bold text-green-600 mb-2">SORWATHE</div>
+                <p className="text-sm text-gray-600">Tea Processing</p>
+                <p className="text-xs text-green-500 mt-2">Hiring: 22+ TVET graduates</p>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg text-center border border-green-200">
+                <div className="text-lg font-bold text-green-600 mb-2">Rwanda Metal</div>
+                <p className="text-sm text-gray-600">Metal Fabrication</p>
+                <p className="text-xs text-green-500 mt-2">Hiring: 18+ TVET graduates</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Agriculture & Agribusiness */}
+          <div className="mt-12">
+            <h3 className="text-lg font-semibold text-gray-900 text-center mb-8">Agriculture & Agribusiness</h3>
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+              <div className="bg-yellow-50 p-6 rounded-lg text-center border border-yellow-200">
+                <div className="text-lg font-bold text-yellow-600 mb-2">Rwanda Coffee</div>
+                <p className="text-sm text-gray-600">Coffee Processing</p>
+                <p className="text-xs text-yellow-500 mt-2">Hiring: 30+ TVET graduates</p>
+              </div>
+              <div className="bg-yellow-50 p-6 rounded-lg text-center border border-yellow-200">
+                <div className="text-lg font-bold text-yellow-600 mb-2">Agro-Processing</div>
+                <p className="text-sm text-gray-600">Food Processing</p>
+                <p className="text-xs text-yellow-500 mt-2">Hiring: 25+ TVET graduates</p>
+              </div>
+              <div className="bg-yellow-50 p-6 rounded-lg text-center border border-yellow-200">
+                <div className="text-lg font-bold text-yellow-600 mb-2">Dairy Co-op</div>
+                <p className="text-sm text-gray-600">Dairy Processing</p>
+                <p className="text-xs text-yellow-500 mt-2">Hiring: 20+ TVET graduates</p>
+              </div>
+              <div className="bg-yellow-50 p-6 rounded-lg text-center border border-yellow-200">
+                <div className="text-lg font-bold text-yellow-600 mb-2">AgriTech Startups</div>
+                <p className="text-sm text-gray-600">Modern Farming</p>
+                <p className="text-xs text-yellow-500 mt-2">Hiring: 15+ TVET graduates</p>
+              </div>
                 </div>
-              </div>)}
           </div>
         </div>
       </div>
@@ -184,10 +344,10 @@ const AboutPage: React.FC = () => {
           </p>
           <div className="mt-8 flex justify-center">
             <div className="inline-flex rounded-md shadow">
-              <Button size="lg">Get Started</Button>
+              <Button size="lg" onClick={handleGetStarted}>Get Started</Button>
             </div>
             <div className="ml-3 inline-flex">
-              <Button variant="outline" size="lg" className="bg-blue-100 text-blue-700 hover:bg-blue-200">
+              <Button variant="outline" size="lg" className="bg-blue-100 text-blue-700 hover:bg-blue-200" onClick={handleLearnMore}>
                 Learn More
               </Button>
             </div>

@@ -1,6 +1,11 @@
 import React from 'react';
 import Card, { CardBody, CardFooter } from '../common/Card';
 import Button from '../common/Button';
+import tvetShowcase2 from '../../assets/images/tvet-showcase2.jpg'
+import tvetShowcase1 from '../../assets/images/tvet-showcase1.jpg'
+import tvetShowcase3 from '../../assets/images/tvet-showcase3.jpg'
+import tvetEntrepreneur from '../../assets/images/tvet-entrepreneur.jpg'
+
 interface Event {
   id: number;
   title: string;
@@ -14,33 +19,33 @@ const upcomingEvents: Event[] = [{
   id: 1,
   title: 'Tech Career Fair',
   type: 'Job Fair',
-  date: 'June 15, 2023',
+  date: 'September 15, 2025',
   location: 'Virtual Event',
-  image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+  image: tvetShowcase2,
   description: 'Connect with top tech companies hiring for entry-level and internship positions. Perfect for recent graduates and those looking to switch careers.'
 }, {
   id: 2,
-  title: 'Web Development Workshop',
+  title: 'Agriculture Workshop',
   type: 'Workshop',
-  date: 'June 22-23, 2023',
+  date: 'October 22-23, 2025',
   location: 'Downtown Training Center',
-  image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+  image: tvetEntrepreneur,
   description: 'Learn the fundamentals of web development in this intensive two-day workshop. HTML, CSS, and JavaScript basics covered.'
 }, {
   id: 3,
   title: 'Healthcare Innovation Hackathon',
   type: 'Hackathon',
-  date: 'July 8-10, 2023',
+  date: 'November 8-10, 2025',
   location: 'Medical Sciences Building',
-  image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+  image: tvetShowcase1,
   description: 'Join teams of developers, designers, and healthcare professionals to create innovative solutions for healthcare challenges.'
 }, {
   id: 4,
   title: 'Sustainable Manufacturing Seminar',
   type: 'Seminar',
-  date: 'July 18, 2023',
+  date: 'December 18, 2025',
   location: 'Industrial Training Institute',
-  image: 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+  image: tvetShowcase3,
   description: "Learn about sustainable practices in manufacturing and how they're shaping the future of the industry."
 }];
 const EventCard: React.FC<{
