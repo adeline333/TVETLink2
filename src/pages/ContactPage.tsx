@@ -21,16 +21,16 @@ const ContactPage: React.FC = () => {
                 <div>
                   <dt className="sr-only">Postal address</dt>
                   <dd>
-                    <p>123 Main Street</p>
-                    <p>Suite 100</p>
-                    <p>New York, NY 10001</p>
+                    <p>kk 509st</p>
+                    <p>Nyarutarama</p>
+                    <p>Kigali, Rwanda</p>
                   </dd>
                 </div>
                 <div className="mt-6">
                   <dt className="sr-only">Phone number</dt>
                   <dd className="flex">
                     <PhoneIcon className="flex-shrink-0 h-6 w-6 text-gray-400" aria-hidden="true" />
-                    <span className="ml-3">+1 (555) 123-4567</span>
+                    <span className="ml-3">+(250) 788-4567</span>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -87,7 +87,7 @@ const ContactPage: React.FC = () => {
                     Full name
                   </label>
                   <div className="mt-1">
-                    <input type="text" name="full-name" id="full-name" autoComplete="name" className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="John Doe" />
+                    <input type="text" name="full-name" id="full-name" autoComplete="name" className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="Uwera Diane" />
                   </div>
                 </div>
                 <div>
@@ -95,7 +95,7 @@ const ContactPage: React.FC = () => {
                     Email
                   </label>
                   <div className="mt-1">
-                    <input id="email" name="email" type="email" autoComplete="email" className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="you@example.com" />
+                    <input id="email" name="email" type="email" autoComplete="email" className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="uwera@gmail.com" />
                   </div>
                 </div>
                 <div>
@@ -103,7 +103,7 @@ const ContactPage: React.FC = () => {
                     Phone
                   </label>
                   <div className="mt-1">
-                    <input type="text" name="phone" id="phone" autoComplete="tel" className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543" />
+                    <input type="text" name="phone" id="phone" autoComplete="tel" className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="+(250) 987-6543" />
                   </div>
                 </div>
                 <div>
@@ -217,14 +217,7 @@ const ContactPage: React.FC = () => {
         </div>
       </div>
       {/* Map Section */}
-      <div className="bg-white">
-        <div className="h-96 bg-gray-300">
-          <div className="h-full w-full flex items-center justify-center">
-            <p className="text-gray-600 text-lg">Interactive Map Location</p>
-            {/* In a real implementation, we would embed a map here */}
-          </div>
-        </div>
-      </div>
+      
     </div>;
 };
 export default ContactPage;
