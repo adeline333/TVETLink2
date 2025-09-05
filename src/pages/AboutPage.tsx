@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
-import tvetGraduation from "../assets/images/tvet-graduation.jpg";
 const AboutPage: React.FC = () => {
   const navigate = useNavigate();
 
@@ -20,7 +19,7 @@ const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
             <div className="absolute inset-0">
-              <img className="h-full w-full object-cover" src={tvetGraduation} alt="TVET graduates working in industry" />
+              <img className="h-full w-full object-cover"  alt="TVET graduates working in industry" />
               <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 opacity-80"></div>
             </div>
             <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
@@ -115,11 +114,11 @@ const AboutPage: React.FC = () => {
                     <p className="mt-5 text-base text-gray-500">
                       Graduates lack industry-relevant skills while employers can't find qualified workers, 
                       creating a cycle that hinders economic growth.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              </p>
             </div>
+          </div>
+        </div>
+      </div>
           </div>
         </div>
       </div>
@@ -327,7 +326,7 @@ const AboutPage: React.FC = () => {
                 <div className="text-lg font-bold text-yellow-600 mb-2">AgriTech Startups</div>
                 <p className="text-sm text-gray-600">Modern Farming</p>
                 <p className="text-xs text-yellow-500 mt-2">Hiring: 15+ TVET graduates</p>
-              </div>
+                </div>
                 </div>
           </div>
         </div>

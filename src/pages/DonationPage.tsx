@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
 import Card, { CardBody } from '../components/common/Card';
 import donation from '../assets/images/donation.jpg'
 
 const DonationPage: React.FC = () => {
+  const navigate = useNavigate();
   const [donationAmount, setDonationAmount] = useState<string>('');
   const [customAmount, setCustomAmount] = useState<string>('');
   const [donorName, setDonorName] = useState<string>('');
   const [donorEmail, setDonorEmail] = useState<string>('');
   const [isAnonymous, setIsAnonymous] = useState<boolean>(false);
   const [donationFrequency, setDonationFrequency] = useState<string>('one-time');
+
+  const handleDonateNow = () => {
+    // Scroll to donation form
+    const formElement = document.getElementById('donation-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleBecomePartner = () => {
+    navigate('/private-sector');
+  };
   const handleDonationAmountClick = (amount: string) => {
     setDonationAmount(amount);
     setCustomAmount('');
@@ -33,12 +47,12 @@ const DonationPage: React.FC = () => {
         </div>
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Support Skills Development
+            Support TVET Enrollment & Private Sector Engagement
           </h1>
           <p className="mt-6 max-w-3xl text-xl text-blue-100">
-            Your donation helps bridge the gap between education and employment,
-            creating opportunities for youth to develop skills that lead to
-            meaningful careers.
+            Your donation directly supports our mission to increase TVET enrollment among youth 
+            and connect private sector employers with skilled graduates, solving Rwanda's skills gap 
+            and creating meaningful career opportunities.
           </p>
         </div>
       </div>
@@ -176,7 +190,7 @@ const DonationPage: React.FC = () => {
               </div>
             </div>
             <div>
-              <Card className="sticky top-20">
+              <Card className="sticky top-20" id="donation-form">
                 <CardBody>
                   <h3 className="text-lg font-medium text-gray-900 mb-6">
                     Make a Donation
@@ -293,47 +307,42 @@ const DonationPage: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* Donor Recognition */}
-      <div className="bg-gray-50 py-16">
+      {/* Impact Metrics */}
+      <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-gray-900">
-              Our Supporters
+              Our Impact
             </h2>
             <p className="mt-4 max-w-2xl text-lg text-gray-500 mx-auto">
-              We're grateful for the generous support of individuals and
-              organizations who make our work possible.
+              Measurable results of connecting TVET graduates with private sector opportunities.
             </p>
           </div>
-          <div className="mt-12">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">
-              Platinum Donors
-            </h3>
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-              {[1, 2, 3, 4].map(donor => <div key={donor} className="col-span-1 flex justify-center py-8 px-8 bg-white rounded-lg">
-                  <div className="text-center">
-                    <p className="text-lg font-medium text-gray-900">
-                      Major Donor {donor}
-                    </p>
-                    <p className="text-sm text-gray-500">Corporate Partner</p>
-                  </div>
-                </div>)}
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="bg-blue-50 rounded-lg p-8 text-center">
+              <div className="text-4xl font-bold text-blue-600 mb-2">2,500+</div>
+              <div className="text-lg font-semibold text-gray-900 mb-1">Students Placed</div>
+              <div className="text-sm text-gray-600">TVET graduates employed through our platform</div>
             </div>
-          </div>
-          <div className="mt-12">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">
-              Gold Donors
-            </h3>
-            <div className="grid grid-cols-2 gap-6 md:grid-cols-6">
-              {[1, 2, 3, 4, 5, 6].map(donor => <div key={donor} className="col-span-1 flex justify-center py-6 px-6 bg-white rounded-lg">
-                  <p className="text-sm font-medium text-gray-900">
-                    Gold Donor {donor}
-                  </p>
-                </div>)}
+            <div className="bg-green-50 rounded-lg p-8 text-center">
+              <div className="text-4xl font-bold text-green-600 mb-2">150+</div>
+              <div className="text-lg font-semibold text-gray-900 mb-1">Partner Companies</div>
+              <div className="text-sm text-gray-600">Private sector employers actively hiring</div>
+            </div>
+            <div className="bg-orange-50 rounded-lg p-8 text-center">
+              <div className="text-4xl font-bold text-orange-600 mb-2">85%</div>
+              <div className="text-lg font-semibold text-gray-900 mb-1">Job Placement Rate</div>
+              <div className="text-sm text-gray-600">Success rate for platform users</div>
+            </div>
+            <div className="bg-purple-50 rounded-lg p-8 text-center">
+              <div className="text-4xl font-bold text-purple-600 mb-2">45%</div>
+              <div className="text-lg font-semibold text-gray-900 mb-1">Salary Increase</div>
+              <div className="text-sm text-gray-600">Average salary boost for graduates</div>
             </div>
           </div>
         </div>
       </div>
+
       {/* FAQ */}
       <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -424,10 +433,10 @@ const DonationPage: React.FC = () => {
           </p>
           <div className="mt-8 flex justify-center">
             <div className="inline-flex rounded-md shadow">
-              <Button size="lg">Donate Now</Button>
+              <Button size="lg" onClick={handleDonateNow}>Donate Now</Button>
             </div>
             <div className="ml-3 inline-flex">
-              <Button variant="outline" size="lg" className="bg-blue-100 text-blue-700 hover:bg-blue-200">
+              <Button variant="outline" size="lg" className="bg-blue-100 text-blue-700 hover:bg-blue-200" onClick={handleBecomePartner}>
                 Become a Partner
               </Button>
             </div>
