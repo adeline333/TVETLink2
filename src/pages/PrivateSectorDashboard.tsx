@@ -1,96 +1,32 @@
-import React, { useState, Component } from 'react';
-import { Routes, Route, useLocation, Link } from 'react-router-dom';
-import { BuildingIcon, BriefcaseIcon, BookOpenIcon, CalendarIcon, HeartIcon, BarChartIcon } from 'lucide-react';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import {
+  BuildingIcon,
+  BriefcaseIcon,
+  BookOpenIcon,
+  CalendarIcon,
+  HeartIcon,
+  BarChartIcon,
+} from 'lucide-react'
+import { DashboardLayout } from '../components/dashboard/DashboardLayout'
 // Dashboard Layout Component
-function SidebarItem({
-  to,
-  icon,
-  label,
-  isActive
-}: {
-  to: string;
-  icon: React.ReactNode;
-  label: string;
-  isActive: boolean;
-}) {
-  return <Link to={to} className={`flex items-center px-4 py-3 mb-2 rounded-md ${isActive ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-700'}`}>
-      <span className="mr-3">{icon}</span>
-      <span>{label}</span>
-    </Link>;
-}
-function DashboardLayout({
-  children,
-  sidebarItems,
-  dashboardTitle
-}: {
-  children: React.ReactNode;
-  sidebarItems: Array<{
-    to: string;
-    icon: React.ReactNode;
-    label: string;
-  }>;
-  dashboardTitle: string;
-}) {
-  const location = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  return <div className="flex h-screen bg-gray-100">
-      {/* Mobile sidebar backdrop */}
-      {isMobileMenuOpen && <div className="fixed inset-0 z-20 bg-black bg-opacity-50 lg:hidden" onClick={() => setIsMobileMenuOpen(false)} />}
-      {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-30 w-64 transform bg-indigo-900 transition duration-300 lg:translate-x-0 lg:static lg:inset-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="flex items-center justify-center h-16 bg-indigo-950">
-          <span className="text-white font-bold text-lg">SkillConnect</span>
-        </div>
-        <nav className="mt-5 px-2">
-          <div className="px-4 py-2 text-xs uppercase tracking-wider text-indigo-300">
-            {dashboardTitle}
-          </div>
-          {sidebarItems.map((item, index) => <SidebarItem key={index} to={item.to} icon={item.icon} label={item.label} isActive={location.pathname === item.to} />)}
-          <div className="border-t border-indigo-800 my-4"></div>
-          <Link to="/" className="flex items-center px-4 py-3 text-indigo-100 hover:bg-indigo-700 rounded-md">
-            <span className="mr-3">🏠</span>
-            <span>Back to Home</span>
-          </Link>
-        </nav>
-      </div>
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top header */}
-        <header className="bg-white shadow-sm z-10">
-          <div className="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-            <button className="lg:hidden text-gray-500 focus:outline-none" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            <h1 className="text-xl font-semibold text-gray-900">
-              {dashboardTitle}
-            </h1>
-            <div className="flex items-center">
-              <button className="flex items-center text-sm text-gray-700 focus:outline-none">
-                <img className="h-8 w-8 rounded-full border-2 border-gray-200" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User avatar" />
-                <span className="ml-2 hidden md:inline-block">John Doe</span>
-              </button>
-            </div>
-          </div>
-        </header>
-        {/* Main content */}
-        <main className="flex-1 overflow-y-auto bg-gray-100 p-4">
-          {children}
-        </main>
-      </div>
-    </div>;
-}
+
+
 // Private Sector Dashboard Components
 function CompanyProfile() {
-  return <div className="bg-white shadow rounded-lg p-6">
+  return (
+    <div className="bg-white shadow rounded-lg p-6">
       <h2 className="text-xl font-semibold text-gray-800 mb-6">
         Company Profile
       </h2>
       <div className="flex flex-col md:flex-row gap-6">
         <div className="md:w-1/3">
           <div className="flex flex-col items-center">
-            <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29tcGFueSUyMGJ1aWxkaW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Company Logo" className="w-32 h-32 rounded-lg object-cover border-4 border-indigo-100" />
+            <img
+              src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29tcGFueSUyMGJ1aWxkaW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+              alt="Company Logo"
+              className="w-32 h-32 rounded-lg object-cover border-4 border-indigo-100"
+            />
             <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
               Change Logo
             </button>
@@ -100,8 +36,18 @@ function CompanyProfile() {
               Company Verification
             </h3>
             <div className="flex items-center text-green-600">
-              <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="h-5 w-5 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
               <span>Verified Business</span>
             </div>
@@ -116,7 +62,11 @@ function CompanyProfile() {
               <label className="block text-sm font-medium text-gray-700">
                 Company Name
               </label>
-              <input type="text" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="TechCorp Inc." />
+              <input
+                type="text"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                defaultValue="TechCorp Inc."
+              />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
@@ -147,26 +97,42 @@ function CompanyProfile() {
               <label className="block text-sm font-medium text-gray-700">
                 Founded Year
               </label>
-              <input type="number" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="2010" />
+              <input
+                type="number"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                defaultValue="2010"
+              />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Website
               </label>
-              <input type="url" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="https://techcorp.example.com" />
+              <input
+                type="url"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                defaultValue="https://techcorp.example.com"
+              />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Location
               </label>
-              <input type="text" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="San Francisco, CA" />
+              <input
+                type="text"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                defaultValue="San Francisco, CA"
+              />
             </div>
           </div>
           <div className="mt-6">
             <label className="block text-sm font-medium text-gray-700">
               Company Description
             </label>
-            <textarea className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" rows={4} defaultValue="TechCorp Inc. is a leading technology company specializing in innovative software solutions for businesses of all sizes. With a focus on cutting-edge development and user-centric design, we help organizations streamline their operations and achieve digital transformation." />
+            <textarea
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              rows={4}
+              defaultValue="TechCorp Inc. is a leading technology company specializing in innovative software solutions for businesses of all sizes. With a focus on cutting-edge development and user-centric design, we help organizations streamline their operations and achieve digital transformation."
+            />
           </div>
         </div>
       </div>
@@ -176,9 +142,23 @@ function CompanyProfile() {
         </h3>
         <div className="border rounded-md p-4 bg-gray-50">
           <div className="flex flex-wrap gap-2">
-            {['React', 'Node.js', 'TypeScript', 'Python', 'AWS', 'Docker', 'Machine Learning', 'UI/UX Design'].map(skill => <span key={skill} className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
+            {[
+              'React',
+              'Node.js',
+              'TypeScript',
+              'Python',
+              'AWS',
+              'Docker',
+              'Machine Learning',
+              'UI/UX Design',
+            ].map((skill) => (
+              <span
+                key={skill}
+                className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
+              >
                 {skill}
-              </span>)}
+              </span>
+            ))}
             <button className="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-500 hover:bg-gray-50">
               + Add Skill
             </button>
@@ -194,19 +174,31 @@ function CompanyProfile() {
             <label className="block text-sm font-medium text-gray-700">
               LinkedIn
             </label>
-            <input type="url" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="https://linkedin.com/company/techcorp" />
+            <input
+              type="url"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              defaultValue="https://linkedin.com/company/techcorp"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Twitter
             </label>
-            <input type="url" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="https://twitter.com/techcorp" />
+            <input
+              type="url"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              defaultValue="https://twitter.com/techcorp"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Contact Email
             </label>
-            <input type="email" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="careers@techcorp.example.com" />
+            <input
+              type="email"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              defaultValue="careers@techcorp.example.com"
+            />
           </div>
         </div>
       </div>
@@ -215,10 +207,12 @@ function CompanyProfile() {
           Save Changes
         </button>
       </div>
-    </div>;
+    </div>
+  )
 }
 function PostOpportunities() {
-  return <div className="space-y-6">
+  return (
+    <div className="space-y-6">
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Post New Opportunity
@@ -228,7 +222,11 @@ function PostOpportunities() {
             <label className="block text-sm font-medium text-gray-700">
               Opportunity Title
             </label>
-            <input type="text" placeholder="e.g., Junior Web Developer" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="text"
+              placeholder="e.g., Junior Web Developer"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -251,21 +249,33 @@ function PostOpportunities() {
                 <option>Remote</option>
                 <option>Hybrid</option>
               </select>
-              <input type="text" placeholder="City, Country (if applicable)" className="block w-full border-l-0 border border-gray-300 rounded-r-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="text"
+                placeholder="City, Country (if applicable)"
+                className="block w-full border-l-0 border border-gray-300 rounded-r-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              />
             </div>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Department
             </label>
-            <input type="text" placeholder="e.g., Engineering, Design, Marketing" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="text"
+              placeholder="e.g., Engineering, Design, Marketing"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Duration
             </label>
             <div className="mt-1 flex items-center space-x-2">
-              <input type="number" placeholder="3" className="block w-20 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="number"
+                placeholder="3"
+                className="block w-20 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              />
               <select className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                 <option>Months</option>
                 <option>Weeks</option>
@@ -283,34 +293,65 @@ function PostOpportunities() {
                 <span className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm flex items-center">
                   JavaScript
                   <button className="ml-1 text-indigo-600 hover:text-indigo-800 focus:outline-none">
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 </span>
                 <span className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm flex items-center">
                   React
                   <button className="ml-1 text-indigo-600 hover:text-indigo-800 focus:outline-none">
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 </span>
               </div>
-              <input type="text" placeholder="Type a skill and press Enter..." className="w-full border-0 focus:ring-0 p-0 text-sm" />
+              <input
+                type="text"
+                placeholder="Type a skill and press Enter..."
+                className="w-full border-0 focus:ring-0 p-0 text-sm"
+              />
             </div>
           </div>
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-700">
               Description
             </label>
-            <textarea className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" rows={6} placeholder="Describe the opportunity, responsibilities, requirements, and what candidates will learn..." />
+            <textarea
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              rows={6}
+              placeholder="Describe the opportunity, responsibilities, requirements, and what candidates will learn..."
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Application Deadline
             </label>
-            <input type="date" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="date"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -322,7 +363,11 @@ function PostOpportunities() {
                 <option>EUR</option>
                 <option>GBP</option>
               </select>
-              <input type="number" placeholder="Amount" className="block w-full border-l-0 border border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="number"
+                placeholder="Amount"
+                className="block w-full border-l-0 border border-gray-300 shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              />
               <select className="block w-32 border-l-0 border border-gray-300 rounded-r-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                 <option>per month</option>
                 <option>per week</option>
@@ -348,22 +393,40 @@ function PostOpportunities() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Title
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Type
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Posted
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Applications
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Status
                 </th>
-                <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Actions
                 </th>
               </tr>
@@ -392,7 +455,10 @@ function PostOpportunities() {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="#" className="text-indigo-600 hover:text-indigo-900 mr-4">
+                  <a
+                    href="#"
+                    className="text-indigo-600 hover:text-indigo-900 mr-4"
+                  >
                     Edit
                   </a>
                   <a href="#" className="text-red-600 hover:text-red-900">
@@ -423,7 +489,10 @@ function PostOpportunities() {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="#" className="text-indigo-600 hover:text-indigo-900 mr-4">
+                  <a
+                    href="#"
+                    className="text-indigo-600 hover:text-indigo-900 mr-4"
+                  >
                     Edit
                   </a>
                   <a href="#" className="text-red-600 hover:text-red-900">
@@ -454,7 +523,10 @@ function PostOpportunities() {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="#" className="text-indigo-600 hover:text-indigo-900 mr-4">
+                  <a
+                    href="#"
+                    className="text-indigo-600 hover:text-indigo-900 mr-4"
+                  >
                     Edit
                   </a>
                   <a href="#" className="text-red-600 hover:text-red-900">
@@ -466,10 +538,12 @@ function PostOpportunities() {
           </table>
         </div>
       </div>
-    </div>;
+    </div>
+  )
 }
 function CurriculumSuggestions() {
-  return <div className="space-y-6">
+  return (
+    <div className="space-y-6">
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Suggest Curriculum Updates
@@ -477,8 +551,18 @@ function CurriculumSuggestions() {
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <div className="flex items-start">
             <div className="bg-blue-100 p-2 rounded-full">
-              <svg className="h-6 w-6 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="h-6 w-6 text-blue-700"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
             </div>
             <div className="ml-4">
@@ -498,7 +582,11 @@ function CurriculumSuggestions() {
             <label className="block text-sm font-medium text-gray-700">
               Suggestion Title
             </label>
-            <input type="text" placeholder="e.g., Add Advanced React Patterns to Web Development Curriculum" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="text"
+              placeholder="e.g., Add Advanced React Patterns to Web Development Curriculum"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -529,13 +617,21 @@ function CurriculumSuggestions() {
             <label className="block text-sm font-medium text-gray-700">
               Detailed Suggestion
             </label>
-            <textarea className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" rows={6} placeholder="Describe the skill, technology, or methodology you're suggesting. Why is it important? How is it used in the industry? What level of proficiency is required for entry-level positions?" />
+            <textarea
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              rows={6}
+              placeholder="Describe the skill, technology, or methodology you're suggesting. Why is it important? How is it used in the industry? What level of proficiency is required for entry-level positions?"
+            />
           </div>
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-700">
               Resources for Learning
             </label>
-            <textarea className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" rows={3} placeholder="Optional: Suggest books, online courses, documentation, or other resources that could help teach this skill." />
+            <textarea
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              rows={3}
+              placeholder="Optional: Suggest books, online courses, documentation, or other resources that could help teach this skill."
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -690,32 +786,82 @@ function CurriculumSuggestions() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center">
-                <svg className="h-4 w-4 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-4 w-4 text-indigo-500 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
                 <span className="text-gray-700">Critical Thinking</span>
               </li>
               <li className="flex items-center">
-                <svg className="h-4 w-4 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-4 w-4 text-indigo-500 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
                 <span className="text-gray-700">Problem Solving</span>
               </li>
               <li className="flex items-center">
-                <svg className="h-4 w-4 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-4 w-4 text-indigo-500 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
                 <span className="text-gray-700">Collaboration</span>
               </li>
               <li className="flex items-center">
-                <svg className="h-4 w-4 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-4 w-4 text-indigo-500 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
                 <span className="text-gray-700">Adaptability</span>
               </li>
               <li className="flex items-center">
-                <svg className="h-4 w-4 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-4 w-4 text-indigo-500 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
                 <span className="text-gray-700">Communication</span>
               </li>
@@ -723,10 +869,12 @@ function CurriculumSuggestions() {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  )
 }
 function EventPlanning() {
-  return <div className="space-y-6">
+  return (
+    <div className="space-y-6">
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Plan New Event
@@ -736,7 +884,11 @@ function EventPlanning() {
             <label className="block text-sm font-medium text-gray-700">
               Event Title
             </label>
-            <input type="text" placeholder="e.g., TechCorp Open Day, Career Fair, Workshop" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="text"
+              placeholder="e.g., TechCorp Open Day, Career Fair, Workshop"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -766,29 +918,46 @@ function EventPlanning() {
             <label className="block text-sm font-medium text-gray-700">
               Date
             </label>
-            <input type="date" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="date"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Time
             </label>
             <div className="mt-1 flex space-x-2">
-              <input type="time" className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="time"
+                className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              />
               <span className="flex items-center">to</span>
-              <input type="time" className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="time"
+                className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              />
             </div>
           </div>
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-700">
               Location/Platform
             </label>
-            <input type="text" placeholder="For in-person: venue address; For virtual: platform link" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="text"
+              placeholder="For in-person: venue address; For virtual: platform link"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-700">
               Event Description
             </label>
-            <textarea className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" rows={4} placeholder="Describe what participants can expect, agenda, and benefits of attending..." />
+            <textarea
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              rows={4}
+              placeholder="Describe what participants can expect, agenda, and benefits of attending..."
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -796,26 +965,54 @@ function EventPlanning() {
             </label>
             <div className="mt-1 space-y-2">
               <div className="flex items-center">
-                <input id="students" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-                <label htmlFor="students" className="ml-2 text-sm text-gray-700">
+                <input
+                  id="students"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="students"
+                  className="ml-2 text-sm text-gray-700"
+                >
                   Students
                 </label>
               </div>
               <div className="flex items-center">
-                <input id="recent-graduates" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-                <label htmlFor="recent-graduates" className="ml-2 text-sm text-gray-700">
+                <input
+                  id="recent-graduates"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="recent-graduates"
+                  className="ml-2 text-sm text-gray-700"
+                >
                   Recent Graduates
                 </label>
               </div>
               <div className="flex items-center">
-                <input id="training-centers" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-                <label htmlFor="training-centers" className="ml-2 text-sm text-gray-700">
+                <input
+                  id="training-centers"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="training-centers"
+                  className="ml-2 text-sm text-gray-700"
+                >
                   Training Centers
                 </label>
               </div>
               <div className="flex items-center">
-                <input id="other-businesses" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-                <label htmlFor="other-businesses" className="ml-2 text-sm text-gray-700">
+                <input
+                  id="other-businesses"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="other-businesses"
+                  className="ml-2 text-sm text-gray-700"
+                >
                   Other Businesses
                 </label>
               </div>
@@ -825,13 +1022,20 @@ function EventPlanning() {
             <label className="block text-sm font-medium text-gray-700">
               Max Participants
             </label>
-            <input type="number" placeholder="Leave blank if no limit" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="number"
+              placeholder="Leave blank if no limit"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-700">
               Registration Deadline
             </label>
-            <input type="date" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="date"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
         </div>
         <div className="mt-8 flex justify-end">
@@ -980,10 +1184,12 @@ function EventPlanning() {
           </button>
         </div>
       </div>
-    </div>;
+    </div>
+  )
 }
 function SubventionPrograms() {
-  return <div className="space-y-6">
+  return (
+    <div className="space-y-6">
       <div className="bg-white shadow rounded-lg p-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Subvention Programs
@@ -1172,7 +1378,11 @@ function SubventionPrograms() {
                 <h4 className="font-medium text-gray-800 mb-2">
                   Propose Your Idea
                 </h4>
-                <textarea className="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" rows={4} placeholder="Describe your idea for supporting education and skills development..." />
+                <textarea
+                  className="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  rows={4}
+                  placeholder="Describe your idea for supporting education and skills development..."
+                />
               </div>
               <div className="flex justify-end">
                 <button className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
@@ -1191,22 +1401,40 @@ function SubventionPrograms() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Program
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Type
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Start Date
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Status
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Impact
                 </th>
-                <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Actions
                 </th>
               </tr>
@@ -1328,10 +1556,12 @@ function SubventionPrograms() {
           </button>
         </div>
       </div>
-    </div>;
+    </div>
+  )
 }
 function Analytics() {
-  return <div className="bg-white shadow rounded-lg p-6">
+  return (
+    <div className="bg-white shadow rounded-lg p-6">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-gray-800">
           Dashboard Analytics
@@ -1409,9 +1639,12 @@ function Analytics() {
                 <span className="text-sm text-gray-700">React Development</span>
                 <div className="flex items-center">
                   <div className="w-32 bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-indigo-600 h-2.5 rounded-full" style={{
-                    width: '85%'
-                  }}></div>
+                    <div
+                      className="bg-indigo-600 h-2.5 rounded-full"
+                      style={{
+                        width: '85%',
+                      }}
+                    ></div>
                   </div>
                   <span className="ml-2 text-xs text-gray-500">85%</span>
                 </div>
@@ -1420,9 +1653,12 @@ function Analytics() {
                 <span className="text-sm text-gray-700">UI/UX Design</span>
                 <div className="flex items-center">
                   <div className="w-32 bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-indigo-600 h-2.5 rounded-full" style={{
-                    width: '72%'
-                  }}></div>
+                    <div
+                      className="bg-indigo-600 h-2.5 rounded-full"
+                      style={{
+                        width: '72%',
+                      }}
+                    ></div>
                   </div>
                   <span className="ml-2 text-xs text-gray-500">72%</span>
                 </div>
@@ -1431,9 +1667,12 @@ function Analytics() {
                 <span className="text-sm text-gray-700">Node.js</span>
                 <div className="flex items-center">
                   <div className="w-32 bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-indigo-600 h-2.5 rounded-full" style={{
-                    width: '68%'
-                  }}></div>
+                    <div
+                      className="bg-indigo-600 h-2.5 rounded-full"
+                      style={{
+                        width: '68%',
+                      }}
+                    ></div>
                   </div>
                   <span className="ml-2 text-xs text-gray-500">68%</span>
                 </div>
@@ -1442,9 +1681,12 @@ function Analytics() {
                 <span className="text-sm text-gray-700">TypeScript</span>
                 <div className="flex items-center">
                   <div className="w-32 bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-indigo-600 h-2.5 rounded-full" style={{
-                    width: '65%'
-                  }}></div>
+                    <div
+                      className="bg-indigo-600 h-2.5 rounded-full"
+                      style={{
+                        width: '65%',
+                      }}
+                    ></div>
                   </div>
                   <span className="ml-2 text-xs text-gray-500">65%</span>
                 </div>
@@ -1453,9 +1695,12 @@ function Analytics() {
                 <span className="text-sm text-gray-700">DevOps</span>
                 <div className="flex items-center">
                   <div className="w-32 bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-indigo-600 h-2.5 rounded-full" style={{
-                    width: '58%'
-                  }}></div>
+                    <div
+                      className="bg-indigo-600 h-2.5 rounded-full"
+                      style={{
+                        width: '58%',
+                      }}
+                    ></div>
                   </div>
                   <span className="ml-2 text-xs text-gray-500">58%</span>
                 </div>
@@ -1529,43 +1774,59 @@ function Analytics() {
           Generate Comprehensive Report
         </button>
       </div>
-    </div>;
+    </div>
+  )
 }
 // Main Private Sector Dashboard Component
 export function PrivateSectorDashboard() {
-  const sidebarItems = [{
-    to: '/private-sector-dashboard',
-    icon: <BuildingIcon className="h-5 w-5" />,
-    label: 'Company Profile'
-  }, {
-    to: '/private-sector-dashboard/post-opportunities',
-    icon: <BriefcaseIcon className="h-5 w-5" />,
-    label: 'Post Opportunities'
-  }, {
-    to: '/private-sector-dashboard/curriculum-suggestions',
-    icon: <BookOpenIcon className="h-5 w-5" />,
-    label: 'Curriculum Suggestions'
-  }, {
-    to: '/private-sector-dashboard/event-planning',
-    icon: <CalendarIcon className="h-5 w-5" />,
-    label: 'Event Planning'
-  }, {
-    to: '/private-sector-dashboard/subvention-programs',
-    icon: <HeartIcon className="h-5 w-5" />,
-    label: 'Subvention Programs'
-  }, {
-    to: '/private-sector-dashboard/analytics',
-    icon: <BarChartIcon className="h-5 w-5" />,
-    label: 'Analytics'
-  }];
-  return <DashboardLayout sidebarItems={sidebarItems} dashboardTitle="Private Sector Dashboard">
+  const sidebarItems = [
+    {
+      to: '/private-sector-dashboard',
+      icon: <BuildingIcon className="h-5 w-5" />,
+      label: 'Company Profile',
+    },
+    {
+      to: '/private-sector-dashboard/post-opportunities',
+      icon: <BriefcaseIcon className="h-5 w-5" />,
+      label: 'Post Opportunities',
+    },
+    {
+      to: '/private-sector-dashboard/curriculum-suggestions',
+      icon: <BookOpenIcon className="h-5 w-5" />,
+      label: 'Curriculum Suggestions',
+    },
+    {
+      to: '/private-sector-dashboard/event-planning',
+      icon: <CalendarIcon className="h-5 w-5" />,
+      label: 'Event Planning',
+    },
+    {
+      to: '/private-sector-dashboard/subvention-programs',
+      icon: <HeartIcon className="h-5 w-5" />,
+      label: 'Subvention Programs',
+    },
+    {
+      to: '/private-sector-dashboard/analytics',
+      icon: <BarChartIcon className="h-5 w-5" />,
+      label: 'Analytics',
+    },
+  ]
+  return (
+    <DashboardLayout
+      sidebarItems={sidebarItems}
+      dashboardTitle="Private Sector Dashboard"
+    >
       <Routes>
         <Route index element={<CompanyProfile />} />
         <Route path="post-opportunities" element={<PostOpportunities />} />
-        <Route path="curriculum-suggestions" element={<CurriculumSuggestions />} />
+        <Route
+          path="curriculum-suggestions"
+          element={<CurriculumSuggestions />}
+        />
         <Route path="event-planning" element={<EventPlanning />} />
         <Route path="subvention-programs" element={<SubventionPrograms />} />
         <Route path="analytics" element={<Analytics />} />
       </Routes>
-    </DashboardLayout>;
+    </DashboardLayout>
+  )
 }
