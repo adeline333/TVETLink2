@@ -1,8 +1,7 @@
 import React, { Component , ReactNode, useState } from 'react';
 import { Routes, Route, useNavigate, Link, NavLink, Outlet } from 'react-router-dom';
 import { UserIcon, ShoppingCartIcon, BookOpenIcon, BrainIcon, BriefcaseIcon, BellIcon, FileIcon } from 'lucide-react';
-//import { DashboardLayout } from '../components/dashboard/DashboardLayout';
-// Student Dashboard Components
+import Confirmation from './Confirmation';
 
 interface SidebarItemProps {
   to: string;
@@ -133,94 +132,120 @@ export function DashboardLayout({
 
 
 export function ProfileSection() {
-  return <div className="bg-white shadow rounded-lg p-6">
-      <h2 className="text-xl font-semibold text-gray-800 mb-6">
-        Personal Profile
-      </h2>
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="md:w-1/3">
-          <div className="flex flex-col items-center">
-            <img src="https://images.pexels.com/photos/31005653/pexels-photo-31005653.jpeg" alt="Profile" className="w-32 h-32 rounded-full object-cover border-4 border-indigo-100" />
-            <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-              Change Photo
-            </button>
+  const [confirm, setConfirm] = useState(false)
+
+  // Handle Confirmation page
+
+  function handleConfirmation() {
+    setConfirm(true)
+  }
+
+  // Handle Submission 
+
+  function handleSubmit(e) {
+    e.preventDefault()
+  }
+
+
+  return(<div className="bg-white shadow rounded-lg p-6">
+         { !confirm ? 
+            (<><h2 className="text-xl font-semibold text-gray-800 mb-6">
+              Personal Profile
+            </h2><div className="flex flex-col md:flex-row gap-6">
+            <div className="md:w-1/3">
+              <div className="flex flex-col items-center">
+                <img src="https://images.pexels.com/photos/31005653/pexels-photo-31005653.jpeg" alt="Profile" className="w-32 h-32 rounded-full object-cover border-4 border-indigo-100" />
+                <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                  Change Photo
+                </button>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+
+            <div className="md:w-2/3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Full Name
+                  </label>
+                  <input type="text" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="John Murakoze" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Email Address
+                  </label>
+                  <input type="email" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="murakoze@example.com" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Phone Number
+                  </label>
+                  <input type="tel" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="+250 (0) 788-123-567" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Location
+                  </label>
+                  <input type="text" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="Kigali, RWANDA" />
+                </div>
+              </div>
+              <div className="mt-6">
+                <label className="block text-sm font-medium text-gray-700">
+                  Bio
+                </label>
+                <textarea className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" rows={3} defaultValue="Computer Science graduate with a passion for web development and AI. Looking for opportunities to grow my skills in a professional environment." />
+              </div>
+            </div>
+            </form>
+
+
           </div>
-        </div>
-        <div className="md:w-2/3">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
-              <input type="text" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="John Murakoze" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email Address
-              </label>
-              <input type="email" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="murakoze@example.com" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Phone Number
-              </label>
-              <input type="tel" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="+250 (0) 788-123-567" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Location
-              </label>
-              <input type="text" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" defaultValue="Kigali, RWANDA" />
-            </div>
-          </div>
-          <div className="mt-6">
-            <label className="block text-sm font-medium text-gray-700">
-              Bio
-            </label>
-            <textarea className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" rows={3} defaultValue="Computer Science graduate with a passion for web development and AI. Looking for opportunities to grow my skills in a professional environment." />
-          </div>
-        </div>
-      </div>
-      <div className="mt-8">
-        <h3 className="text-lg font-medium text-gray-800 mb-4">
-          Skills & Interests
-        </h3>
-        <div className="border rounded-md p-4 bg-gray-50">
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              My Skills
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {['JavaScript', 'React', 'Node.js', 'UI/UX Design', 'Python'].map(skill => <span key={skill} className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
+          <div className="mt-8">
+            <h3 className="text-lg font-medium text-gray-800 mb-4">
+              Skills & Interests
+            </h3>
+            <div className="border rounded-md p-4 bg-gray-50">
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  My Skills
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {['JavaScript', 'React', 'Node.js', 'UI/UX Design', 'Python'].map(skill => <span key={skill} className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
                     {skill}
                   </span>)}
-              <button className="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-500 hover:bg-gray-50">
-                + Add Skill
-              </button>
+                  <button className="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-500 hover:bg-gray-50">
+                    + Add Skill
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Career Interests
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {['Software Development', 'Data Science', 'Product Management'].map(interest => <span key={interest} className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                    {interest}
+                  </span>)}
+                  <button className="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-500 hover:bg-gray-50">
+                    + Add Interest
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Career Interests
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {['Software Development', 'Data Science', 'Product Management'].map(interest => <span key={interest} className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                  {interest}
-                </span>)}
-              <button className="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-500 hover:bg-gray-50">
-                + Add Interest
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="mt-6 flex justify-end">
-        <button className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-          Save Changes
-        </button>
-      </div>
-    </div>;
+          </div><div className="mt-6 flex justify-end">
+            <button className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+              onClick={handleConfirmation}
+            >
+              Save Changes
+            </button>
+          </div></>) : <Confirmation name={''} />  }
+    </div>)
+    ;
 }
+
+
+
 export function ShoppingCart() {
   const cartItems = [{
     id: 1,
