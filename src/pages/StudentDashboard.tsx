@@ -239,7 +239,7 @@ export function ProfileSection() {
             >
               Save Changes
             </button>
-          </div></>) : <Confirmation name={''} />  }
+          </div></>) : <Confirmation  onBack={() => setConfirm(false)} />  }
     </div>)
     ;
 }
