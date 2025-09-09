@@ -1,33 +1,35 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import AboutPage from './pages/AboutPage';
-import PrivateSectorPage from './pages/PrivateSectorPage';
-import DonationPage from './pages/DonationPage';
-import ContactPage from './pages/ContactPage';
-import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
-import { StudentDashboard } from './pages/StudentDashboard';
-import { PrivateSectorDashboard } from './pages/PrivateSectorDashboard';
-import AdminDashboard from './pages/AdminDashboard';
-import Navbar from './components/common/Navbar';
-import Footer from './components/common/Footer';
-import ProtectedRoute from './components/common/ProtectedRoute';
-import { AuthProvider } from './contexts/AuthContext';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import AboutPage from "./pages/AboutPage";
+import PrivateSectorPage from "./pages/PrivateSectorPage";
+import DonationPage from "./pages/DonationPage";
+import ContactPage from "./pages/ContactPage";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import { StudentDashboard } from "./pages/StudentDashboard";
+import { PrivateSectorDashboard } from "./pages/PrivateSectorDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+import Navbar from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import { AuthProvider } from "./contexts/AuthContext";
 
 // 👇 import the student dashboard sections
-import { ProfileSection } from './pages/StudentDashboard';
-import { ShoppingCart } from './pages/StudentDashboard';
-import { CVUpload } from './pages/StudentDashboard';
-import { TrainingCenters } from './pages/StudentDashboard';
-import { CareerMatch } from './pages/StudentDashboard';
-import { Opportunities } from './pages/StudentDashboard';
-import { Notifications } from './pages/StudentDashboard';
+import { ProfileSection } from "./pages/StudentDashboard";
+import { ShoppingCart } from "./pages/StudentDashboard";
+import { CVUpload } from "./pages/StudentDashboard";
+import { TrainingCenters } from "./pages/StudentDashboard";
+import { CareerMatch } from "./pages/StudentDashboard";
+import { Opportunities } from "./pages/StudentDashboard";
+import { Notifications } from "./pages/StudentDashboard";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 export function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-gray-50">
           <Navbar />
           <main className="flex-grow">
