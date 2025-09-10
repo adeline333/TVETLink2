@@ -16,26 +16,26 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Hardcoded users for MVP - super simple!
-const MOCK_USERS = [
+// Mock users for MVP - credentials loaded from environment variables
+const getMockUsers = () => [
   {
     id: '1',
-    email: 'student@tvet.com',
-    password: 'student123',
+    email: import.meta.env.VITE_STUDENT_EMAIL || 'student@tvet.com',
+    password: import.meta.env.VITE_STUDENT_PASSWORD || 'student123',
     role: 'student' as const,
     name: 'John Student'
   },
   {
     id: '2',
-    email: 'company@tvet.com',
-    password: 'company123',
+    email: import.meta.env.VITE_COMPANY_EMAIL || 'company@tvet.com',
+    password: import.meta.env.VITE_COMPANY_PASSWORD || 'company123',
     role: 'private-sector' as const,
     name: 'Jane Company Rep'
   },
   {
     id: '3',
-    email: 'admin@tvet.com',
-    password: 'admin123',
+    email: import.meta.env.VITE_ADMIN_EMAIL || 'admin@tvet.com',
+    password: import.meta.env.VITE_ADMIN_PASSWORD || 'admin123',
     role: 'admin' as const,
     name: 'Admin User'
   }
@@ -53,7 +53,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const login = (email: string, password: string, role: string): boolean => {
-    const foundUser = MOCK_USERS.find(
+    const mockUsers = getMockUsers();
+    const foundUser = mockUsers.find(
       u => u.email === email && u.password === password && u.role === role
     );
 
