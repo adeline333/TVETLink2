@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
+import WorkplaceLearning from "../../assets/images/WorkplaceLearning.jpg";
 const Hero: React.FC = () => {
   return <div className="relative bg-blue-700 overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -41,7 +42,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="/src/assets/images/Workplace learning.jpg" alt="TVET students learning in workplace environment" />
+        <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src={WorkplaceLearning} alt="TVET students learning in workplace environment" />
       </div>
     </div>;
 };
