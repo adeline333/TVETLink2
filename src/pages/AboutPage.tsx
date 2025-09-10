@@ -19,7 +19,7 @@ const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
             <div className="absolute inset-0">
-              <img className="h-full w-full object-cover"  alt="TVET graduates working in industry" />
+              <img className="h-full w-full object-cover" src="/src/assets/images/tvet-conference.jpg" alt="TVET conference showcasing industry partnerships" />
               <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 opacity-80"></div>
             </div>
             <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
